@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import CustomerView from "./CustomerView";
+//import CustomerView from "./CustomerView";
+import {addCustomer as addCustomerAction} from './slice/CustomerSlice'
+import { useDispatch } from 'react-redux';
 export default function CustomerAdd(){
     const [input,setInput] = useState();
-    const [customer,setCustomer] = useState([]);
-
+    // const [customer,setCustomer] = useState([]);
+    const dispatch=useDispatch();
     function addCustomer(){
         if(input){
-            setCustomer([...customer,input]);
+            // setCustomer([...customer,input]);
             // console.log(customer);
+            dispatch(addCustomerAction(input))
             setInput("");
         }
     }
@@ -28,7 +31,7 @@ export default function CustomerAdd(){
     }/>
     <button onClick={addCustomer}>Add</button>
     </div>
-    <CustomerView customers={customer}/>
+    {/* <CustomerView customers={customer}/> */}
     </>
     );
     
